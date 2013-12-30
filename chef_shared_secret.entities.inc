@@ -21,6 +21,10 @@ class ChefSharedSecret extends Entity {
   public function hash($raw_output = FALSE) {
     return hash('sha256', $this->secret, $raw_output);
   }
+
+  public function generate() {
+    $this->secret = base64_encode(drupal_random_bytes(CHEF_SHARED_SECRET_GENERATE_LENGTH));
+  }
 }
 
 /**
